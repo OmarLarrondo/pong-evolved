@@ -12,12 +12,12 @@ A modern reimplementation of the classic Pong game built with JavaFX, demonstrat
 ## Features
 
 - **Multiple Game Modes**
-  - 1 Player vs AI with 3 difficulty levels (Easy, Medium, Hard)
+  - 1 Player vs AI with 10 difficulty levels
   - 2 Player local multiplayer
   - Level Editor with persistent custom levels
 
 - **AI Opponents**
-  - Three difficulty levels with distinct behavioral patterns
+  - Ten difficulty levels with progressively challenging behavioral patterns
   - Advanced AI using trajectory prediction and reaction timers
   - Configurable error generation for realistic gameplay
 
