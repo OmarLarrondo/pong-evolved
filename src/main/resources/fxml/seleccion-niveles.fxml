@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="contenedor-principal"
+            minWidth="800.0"
+            minHeight="600.0">
+
+    <!-- Título Superior -->
+    <top>
+        <VBox alignment="CENTER" spacing="20">
+            <padding>
+                <Insets top="40" bottom="20"/>
+            </padding>
+            <Label text="SELECCIONE EL NIVEL" styleClass="titulo-principal"/>
+            <Label fx:id="labelDificultad"
+                   styleClass="label-dificultad-ia"
+                   visible="false"
+                   managed="false"/>
+        </VBox>
+    </top>
+
+    <!-- Contenido Central: Grid de Niveles -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true"
+                    styleClass="scroll-niveles"
+                    hbarPolicy="NEVER">
+            <padding>
+                <Insets top="20" bottom="20" left="40" right="40"/>
+            </padding>
+
+            <GridPane fx:id="gridNiveles"
+                      hgap="30"
+                      vgap="30"
+                      alignment="CENTER"
+                      styleClass="grid-niveles">
+                <padding>
+                    <Insets top="10" bottom="10"/>
+                </padding>
+            </GridPane>
+        </ScrollPane>
+    </center>
+
+    <!-- Footer: Botones Regresar y Jugar -->
+    <bottom>
+        <HBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets bottom="30" left="30" right="30" top="10"/>
+            </padding>
+
+            <Button fx:id="botonRegresar"
+                    styleClass="boton-secundario"
+                    onAction="#accionRegresar">
+                <graphic>
+                    <HBox spacing="8" alignment="CENTER">
+                        <FontIcon iconLiteral="fas-home" iconSize="12"/>
+                        <Label text="Regresar"/>
+                    </HBox>
+                </graphic>
+            </Button>
+
+            <Button fx:id="botonJugar"
+                    text="Jugar"
+                    styleClass="boton-menu boton-jugar"
+                    visible="false"
+                    onAction="#accionJugar"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

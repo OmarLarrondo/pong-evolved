@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Pane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="contenedor-principal"
+            minWidth="800.0"
+            minHeight="600.0">
+
+    <!-- Contenido Central: Canvas de Edición -->
+    <center>
+        <StackPane fx:id="contenedorCanvas" alignment="CENTER">
+            <padding>
+                <Insets top="10" bottom="10" left="20" right="20"/>
+            </padding>
+
+            <!-- Canvas principal para dibujar el mapa -->
+            <Canvas fx:id="canvasMapa"
+                    styleClass="canvas-editor"
+                    StackPane.alignment="CENTER"/>
+
+            <!-- Canvas dedicado para el grid (capa inferior) -->
+            <Canvas fx:id="canvasGrid"
+                    mouseTransparent="true"
+                    pickOnBounds="false"
+                    StackPane.alignment="CENTER"/>
+        </StackPane>
+    </center>
+
+    <!-- Panel Derecho: Propiedades del Nivel -->
+    <right>
+        <VBox spacing="20" alignment="TOP_CENTER" styleClass="panel-propiedades">
+            <padding>
+                <Insets top="20" bottom="20" left="15" right="15"/>
+            </padding>
+
+            <Label text="PROPIEDADES" styleClass="texto-info titulo-seccion"
+                   style="-fx-font-size: 12px; -fx-underline: true;"/>
+
+            <!-- Nombre del Nivel -->
+            <VBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="Nombre:" styleClass="texto-info"/>
+                <TextField fx:id="campoNombre"
+                          promptText="Nivel sin nombre"
+                          prefWidth="180"
+                          maxWidth="180"
+                          styleClass="campo-texto"/>
+            </VBox>
+
+            <!-- Dificultad -->
+            <VBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="Dificultad:" styleClass="texto-info"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="etiquetaDificultad"
+                           text="★☆☆"
+                           styleClass="texto-info"
+                           style="-fx-font-size: 14px;"/>
+                    <Label fx:id="valorDificultad"
+                           text="1"
+                           styleClass="texto-info"/>
+                </HBox>
+                <Slider fx:id="deslizadorDificultad"
+                        min="1"
+                        max="3"
+                        value="1"
+                        snapToTicks="true"
+                        showTickMarks="true"
+                        showTickLabels="false"
+                        majorTickUnit="1"
+                        blockIncrement="1"
+                        prefWidth="180"
+                        maxWidth="180"/>
+            </VBox>
+
+            <!-- Creador -->
+            <VBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="Creador:" styleClass="texto-info"/>
+                <TextField fx:id="campoCreador"
+                          promptText="Anónimo"
+                          prefWidth="180"
+                          maxWidth="180"
+                          styleClass="campo-texto"/>
+            </VBox>
+
+            <!-- Estadísticas -->
+            <VBox spacing="8" alignment="CENTER_LEFT" styleClass="panel-info">
+                <padding>
+                    <Insets top="10" bottom="10" left="10" right="10"/>
+                </padding>
+                <Label text="ESTADÍSTICAS" styleClass="texto-info titulo-seccion"
+                       style="-fx-font-size: 10px;"/>
+                <Label fx:id="etiquetaBloques"
+                       text="Bloques: 0"
+                       styleClass="texto-info"
+                       style="-fx-font-size: 9px;"/>
+            </VBox>
+        </VBox>
+    </right>
+
+    <!-- Barra Inferior: Herramientas y Acciones -->
+    <bottom>
+        <VBox spacing="0">
+            <!-- Separador -->
+            <HBox styleClass="separador"/>
+
+            <HBox spacing="15" alignment="CENTER" styleClass="barra-herramientas">
+                <padding>
+                    <Insets top="20" bottom="20" left="20" right="20"/>
+                </padding>
+
+                <!-- Sección: Bloques -->
+                <VBox spacing="5" alignment="CENTER">
+                    <Label text="BLOQUES" styleClass="texto-info titulo-seccion"
+                           style="-fx-font-size: 8px;"/>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Button fx:id="botonBloqueDestructible"
+                                styleClass="boton-herramienta"
+                                onAction="#accionSeleccionarBloqueDestructible">
+                            <graphic>
+                                <VBox spacing="5" alignment="CENTER">
+                                    <FontIcon iconLiteral="fas-square" iconSize="20"/>
+                                    <Label text="Des." style="-fx-font-size: 7px;"/>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button fx:id="botonBloqueIndestructible"
+                                styleClass="boton-herramienta"
+                                onAction="#accionSeleccionarBloqueIndestructible">
+                            <graphic>
+                                <VBox spacing="5" alignment="CENTER">
+                                    <FontIcon iconLiteral="fas-times" iconSize="20"/>
+                                    <Label text="Ind." style="-fx-font-size: 7px;"/>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button fx:id="botonBloqueBonus"
+                                styleClass="boton-herramienta"
+                                onAction="#accionSeleccionarBloqueBonus">
+                            <graphic>
+                                <VBox spacing="5" alignment="CENTER">
+                                    <FontIcon iconLiteral="fas-star" iconSize="20"/>
+                                    <Label text="Bonus" style="-fx-font-size: 7px;"/>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button fx:id="botonBloqueMulti"
+                                styleClass="boton-herramienta"
+                                onAction="#accionSeleccionarBloqueMulti">
+                            <graphic>
+                                <VBox spacing="5" alignment="CENTER">
+                                    <FontIcon iconLiteral="fas-cube" iconSize="20"/>
+                                    <Label text="Multi" style="-fx-font-size: 7px;"/>
+                                </VBox>
+                            </graphic>
+                        </Button>
+                    </HBox>
+                </VBox>
+
+                <!-- Separador vertical -->
+                <VBox styleClass="separador" prefWidth="2" minWidth="2"/>
+
+                <!-- Sección: Herramientas -->
+                <VBox spacing="5" alignment="CENTER">
+                    <Label text="HERRAMIENTAS" styleClass="texto-info titulo-seccion"
+                           style="-fx-font-size: 8px;"/>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Button fx:id="botonBorrador"
+                                styleClass="boton-herramienta"
+                                onAction="#accionSeleccionarBorrador">
+                            <graphic>
+                                <VBox spacing="5" alignment="CENTER">
+                                    <FontIcon iconLiteral="fas-eraser" iconSize="20"/>
+                                    <Label text="Borrar" style="-fx-font-size: 7px;"/>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button fx:id="botonToggleGrid"
+                                styleClass="boton-herramienta"
+                                onAction="#accionToggleGrid">
+                            <graphic>
+                                <VBox spacing="5" alignment="CENTER">
+                                    <FontIcon iconLiteral="fas-grip-lines" iconSize="20"/>
+                                    <Label text="Grid" style="-fx-font-size: 7px;"/>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button fx:id="botonCargar"
+                                styleClass="boton-herramienta"
+                                onAction="#accionCargarNivel">
+                            <graphic>
+                                <VBox spacing="5" alignment="CENTER">
+                                    <FontIcon iconLiteral="fas-cloud-upload-alt" iconSize="20"/>
+                                    <Label text="Cargar" style="-fx-font-size: 7px;"/>
+                                </VBox>
+                            </graphic>
+                        </Button>
+                    </HBox>
+                </VBox>
+
+                <!-- Separador vertical -->
+                <VBox styleClass="separador" prefWidth="2" minWidth="2"/>
+
+                <!-- Sección: Acciones -->
+                <HBox spacing="15" alignment="CENTER">
+                    <Button fx:id="botonGuardar"
+                            styleClass="boton-secundario"
+                            onAction="#accionGuardarMapa">
+                        <graphic>
+                            <HBox spacing="8" alignment="CENTER">
+                                <FontIcon iconLiteral="fas-save" iconSize="12"/>
+                                <Label text="Guardar"/>
+                            </HBox>
+                        </graphic>
+                    </Button>
+
+                    <Button fx:id="botonCancelar"
+                            styleClass="boton-secundario"
+                            onAction="#accionCancelar">
+                        <graphic>
+                            <HBox spacing="8" alignment="CENTER">
+                                <FontIcon iconLiteral="fas-times-circle" iconSize="12"/>
+                                <Label text="Cancelar"/>
+                            </HBox>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>

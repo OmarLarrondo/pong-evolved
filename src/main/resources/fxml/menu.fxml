@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.image.ImageView?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="contenedor-principal"
+            minWidth="800.0"
+            minHeight="600.0">
+
+    <!-- Título Superior con Botón Mute -->
+    <top>
+        <BorderPane>
+            <padding>
+                <Insets top="40" bottom="20" left="30" right="30"/>
+            </padding>
+            <center>
+                <Label text="PONG EVOLVED" styleClass="titulo-principal"/>
+            </center>
+            <right>
+                <Button fx:id="botonMute"
+                        styleClass="boton-icono-mute"
+                        onAction="#accionAlternarMute">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-volume-up" iconSize="24"/>
+                    </graphic>
+                </Button>
+            </right>
+        </BorderPane>
+    </top>
+
+    <!-- Contenido Central: Menú + Video Preview -->
+    <center>
+        <HBox spacing="50" alignment="CENTER" fillHeight="true">
+            <padding>
+                <Insets left="40" right="40" top="20" bottom="20"/>
+            </padding>
+
+            <!-- Panel Izquierdo: Botones del Menú -->
+            <VBox spacing="20" alignment="CENTER" styleClass="contenedor-botones" fillWidth="true">
+                <HBox.hgrow>
+                    <Priority fx:constant="SOMETIMES"/>
+                </HBox.hgrow>
+                <Button fx:id="botonUnJugador"
+                        text="1 jugador"
+                        styleClass="boton-menu"
+                        maxWidth="Infinity"
+                        onAction="#accionUnJugador"
+                        onMouseEntered="#hoverUnJugador"
+                        onMouseExited="#salirHover"/>
+
+                <Button fx:id="botonDosJugadores"
+                        text="2 jugadores"
+                        styleClass="boton-menu"
+                        maxWidth="Infinity"
+                        onAction="#accionDosJugadores"
+                        onMouseEntered="#hoverDosJugadores"
+                        onMouseExited="#salirHover"/>
+
+                <Button fx:id="botonModoConstructor"
+                        text="Modo constructor"
+                        styleClass="boton-menu"
+                        maxWidth="Infinity"
+                        onAction="#accionModoConstructor"
+                        onMouseEntered="#hoverModoConstructor"
+                        onMouseExited="#salirHover"/>
+            </VBox>
+
+            <!-- Panel Derecho: Video Preview -->
+            <StackPane styleClass="contenedor-video"
+                       minWidth="300.0"
+                       minHeight="225.0">
+                <HBox.hgrow>
+                    <Priority fx:constant="ALWAYS"/>
+                </HBox.hgrow>
+                <MediaView fx:id="mediaView"
+                           preserveRatio="true"
+                           styleClass="media-view"
+                           visible="true"/>
+                <ImageView fx:id="imageView"
+                           preserveRatio="true"
+                           styleClass="image-view"
+                           visible="false"/>
+            </StackPane>
+        </HBox>
+    </center>
+
+    <!-- Footer: Botones Pantalla Completa y Acerca de -->
+    <bottom>
+        <HBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets bottom="30" left="30" right="30"/>
+            </padding>
+            <Button fx:id="botonPantallaCompleta"
+                    text="Pantalla Completa [P]"
+                    styleClass="boton-secundario"
+                    onAction="#accionPantallaCompleta"/>
+            <Button text="Acerca de"
+                    styleClass="boton-secundario"
+                    onAction="#accionAcercaDe"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

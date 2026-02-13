@@ -1,0 +1,51 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+release.properties
+pom.xml.versionsBackup
+
+# IDE - IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# IDE - Visual Studio Code
+.vscode/
+*.code-workspace
+
+# IDE - Eclipse
+.classpath
+.project
+.settings/
+.c9/
+
+# OS specific
+.DS_Store
+Thumbs.db
+.trashes
+.env
+
+# Java
+*.class
+
+# Logs
+*.log
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# MCP configuration
+.mcp.json
+.serena/
+
+# Claude instructions (private)
+CLAUDE.md
+.claude/
+
+# Database
+data/*.db
+data/*.db-journal

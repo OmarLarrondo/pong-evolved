@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="mvc.controlador.ControladorDialogoCargarNivel"
+            styleClass="contenedor-principal"
+            prefWidth="600.0"
+            prefHeight="450.0">
+
+    <!-- Título Superior -->
+    <top>
+        <VBox alignment="CENTER" spacing="10">
+            <padding>
+                <Insets top="20" bottom="10" left="20" right="20"/>
+            </padding>
+            <Label text="CARGAR NIVEL" styleClass="texto-titulo"/>
+            <Label text="Selecciona un nivel guardado para editar"
+                   styleClass="texto-info"/>
+        </VBox>
+    </top>
+
+    <!-- Lista de Niveles -->
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" bottom="10" left="20" right="20"/>
+            </padding>
+
+            <Label text="Niveles Personalizados:" styleClass="texto-info"/>
+
+            <ListView fx:id="listaNiveles"
+                      styleClass="lista-niveles"
+                      VBox.vgrow="ALWAYS"
+                      minHeight="250"/>
+        </VBox>
+    </center>
+
+    <!-- Botones de Acción -->
+    <bottom>
+        <HBox spacing="15" alignment="CENTER">
+            <padding>
+                <Insets top="15" bottom="20" left="20" right="20"/>
+            </padding>
+
+            <Button fx:id="botonCargar"
+                    text="Cargar"
+                    styleClass="boton-principal"
+                    prefWidth="120"
+                    defaultButton="true"
+                    onAction="#manejarCargar">
+                <graphic>
+                    <FontIcon iconLiteral="fas-folder-open" iconSize="14"/>
+                </graphic>
+            </Button>
+
+            <Button fx:id="botonEliminar"
+                    text="Eliminar"
+                    styleClass="boton-secundario"
+                    prefWidth="120"
+                    onAction="#manejarEliminar">
+                <graphic>
+                    <FontIcon iconLiteral="fas-trash" iconSize="14"/>
+                </graphic>
+            </Button>
+
+            <Button fx:id="botonCancelar"
+                    text="Cancelar"
+                    styleClass="boton-secundario"
+                    prefWidth="120"
+                    cancelButton="true"
+                    onAction="#manejarCancelar">
+                <graphic>
+                    <FontIcon iconLiteral="fas-times" iconSize="14"/>
+                </graphic>
+            </Button>
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="mvc.controlador.ControladorDialogoSeleccionPorDificultad"
+            styleClass="contenedor-principal"
+            prefWidth="700.0"
+            prefHeight="500.0">
+
+    <!-- Título Superior -->
+    <top>
+        <VBox alignment="CENTER" spacing="10">
+            <padding>
+                <Insets top="20" bottom="15" left="20" right="20"/>
+            </padding>
+            <Label fx:id="labelTitulo" text="NIVELES DE DIFICULTAD" styleClass="titulo-principal"/>
+            <Label fx:id="labelSubtitulo" text="Selecciona un nivel para jugar" styleClass="texto-info"/>
+        </VBox>
+    </top>
+
+    <!-- Grid de Niveles -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true"
+                    styleClass="scroll-niveles"
+                    hbarPolicy="NEVER">
+            <padding>
+                <Insets top="10" bottom="10" left="20" right="20"/>
+            </padding>
+
+            <GridPane fx:id="gridNiveles"
+                      hgap="20"
+                      vgap="20"
+                      alignment="CENTER"
+                      styleClass="grid-niveles">
+                <padding>
+                    <Insets top="5" bottom="5"/>
+                </padding>
+            </GridPane>
+        </ScrollPane>
+    </center>
+
+    <!-- Botones de Acción -->
+    <bottom>
+        <HBox spacing="15" alignment="CENTER">
+            <padding>
+                <Insets top="15" bottom="20" left="20" right="20"/>
+            </padding>
+
+            <Button fx:id="botonSeleccionar"
+                    text="Seleccionar"
+                    styleClass="boton-principal"
+                    prefWidth="140"
+                    visible="false"
+                    defaultButton="true"
+                    onAction="#manejarSeleccionar">
+                <graphic>
+                    <FontIcon iconLiteral="fas-check" iconSize="14"/>
+                </graphic>
+            </Button>
+
+            <Button fx:id="botonCancelar"
+                    text="Cancelar"
+                    styleClass="boton-secundario"
+                    prefWidth="140"
+                    cancelButton="true"
+                    onAction="#manejarCancelar">
+                <graphic>
+                    <FontIcon iconLiteral="fas-times" iconSize="14"/>
+                </graphic>
+            </Button>
+        </HBox>
+    </bottom>
+</BorderPane>
